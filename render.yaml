@@ -1,0 +1,32 @@
+# Render blueprint. Deploy the backend first: the frontend needs its URL.
+services:
+  - type: web
+    name: yale-som-courses-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORTKEY_API_KEY
+        sync: false          # set in the Render dashboard, never in the repo
+      - key: DATABASE_URL
+        sync: false          # Supabase connection string
+      - key: JWT_SECRET
+        generateValue: true  # Render generates a strong secret once and keeps it
+      - key: ALLOWED_ORIGINS
+        sync: false          # the static site URL, once it exists
+
+  - type: web
+    name: yale-som-courses-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false          # the backend URL from the service above
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
