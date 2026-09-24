@@ -1,0 +1,57 @@
+:root {
+  --cash-green: #2fbf71;
+  --cash-green-deep: #0f7a43;
+  --gold: #ffd24a;
+  --gold-deep: #d9a521;
+  --mint: #a8f0c6;
+
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-strong: rgba(255, 255, 255, 0.12);
+  --glass-line: rgba(168, 240, 198, 0.2);
+  --blur: blur(16px) saturate(140%);
+
+  --text: #eafff2;
+  --muted: #8fb8a2;
+
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(900px 600px at 10% -5%, rgba(47, 191, 113, 0.3), transparent 60%),
+    radial-gradient(760px 520px at 90% 6%, rgba(255, 210, 74, 0.22), transparent 62%),
+    radial-gradient(700px 700px at 50% 112%, rgba(15, 122, 67, 0.35), transparent 60%),
+    linear-gradient(168deg, #04170d 0%, #07301b 48%, #030f08 100%);
+  background-attachment: fixed;
+}
+
+/* Tiled banknote-style dollar signs behind everything. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ctext x='18' y='44' font-family='Georgia,serif' font-size='40' fill='%23ffd24a'%3E%24%3C/text%3E%3Ctext x='74' y='104' font-family='Georgia,serif' font-size='40' fill='%232fbf71'%3E%24%3C/text%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--gold), var(--cash-green));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}

@@ -1,0 +1,21 @@
+# Secrets — never commit a real key
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Node
+node_modules/
+dist/
+*.local
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
